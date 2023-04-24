@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Hello></Hello>
+    <NuxtPage />
   </div>
 </template>
-
 <script lang="ts" setup>
 </script>
