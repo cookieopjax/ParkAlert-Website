@@ -1,16 +1,23 @@
 <template>
-    <div>設計介紹頁面</div>
-    <v-btn color="red" prepend-icon="mdi-vuetify">
-  Button
-</v-btn>
-<v-chip prepend-icon="mdi-vuetify">
-  Chip
-</v-chip>
-<v-expansion-panels>
-  <v-expansion-panel
-    title="Title"
-    text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima"
-  >
-  </v-expansion-panel>
-</v-expansion-panels>
+    <div>官網</div>
+    <v-container id="topicImg">
+    <v-row no-gutters>
+      <v-col
+      >
+        <v-sheet class="ma-2 pa-2">
+          One of three columns
+        </v-sheet>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+<style lang="scss">
+    $main-color: #F7F5E6;
+    body{
+        background-color: $main-color;
+    }
+    #topicImg{
+        background-color: white;
+        height: 30rem;
+    }   
+</style>
