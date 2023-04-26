@@ -10,7 +10,9 @@ module.exports = {
   },
   plugins: ["prettier"],
   rules: {
-    "vue/multi-word-component-names": "off"
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/html-self-closing": "off"
   },
   overrides: [
     {
@@ -22,24 +24,13 @@ module.exports = {
       ],
       rules: {
         "vue/multi-word-component-names": "off",
+        "vue/no-multiple-template-root": "off",
+        "vue/html-self-closing": "off",
         "linebreak-style": ["off", "windows"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
-        "@typescript-eslint/no-unused-vars": "warn",
-        "vue/html-self-closing": [
-          "error",
-          {
-            html: {
-              void: "never",
-              normal: "any",
-              component: "always"
-            },
-            svg: "always",
-            math: "always"
-          }
-        ]
+        "@typescript-eslint/no-unused-vars": "warn"
       }
     }
   ]
 };
-
