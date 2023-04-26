@@ -11,6 +11,8 @@
     </v-container>
   </div>
 </template>
+
+<script></script>
 <style lang="scss">
 $main-color: #f7f5e6;
 body {
@@ -21,8 +23,3 @@ body {
   height: 30rem;
 }
 </style>
-<script setup>
-definePageMeta({
-  layout: "appbar"
-});
-</script>

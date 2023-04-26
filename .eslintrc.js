@@ -29,19 +29,7 @@ module.exports = {
         "linebreak-style": ["off", "windows"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
-        "@typescript-eslint/no-unused-vars": "warn",
-        "vue/html-self-closing": [
-          "error",
-          {
-            html: {
-              void: "never",
-              normal: "any",
-              component: "always"
-            },
-            svg: "always",
-            math: "always"
-          }
-        ]
+        "@typescript-eslint/no-unused-vars": "warn"
       }
     }
   ]

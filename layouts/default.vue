@@ -3,10 +3,10 @@
     <v-layout>
       <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
 
-      <v-app-bar color="red" prominent>
+      <v-app-bar :elevation="10" color="red" prominent>
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>My files</v-toolbar-title>
+        <v-toolbar-title>My files1</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -22,6 +22,7 @@
       </v-navigation-drawer>
     </v-layout>
   </v-card>
+  <slot />
 </template>
 <script>
 export default {
