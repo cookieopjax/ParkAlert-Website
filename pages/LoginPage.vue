@@ -37,14 +37,14 @@ const password = ref("");
 const usernameRules = ref([
   (value: any) => {
     if (value) return true;
-    return "You must have enter an username.";
+    return "帳號輸入不可以為空!";
   }
 ]);
 
 const passwordRules = ref([
   (value: any) => {
     if (value) return true;
-    return "You must have enter password.";
+    return "密碼輸入不可以為空!";
   }
 ]);
 </script>
@@ -69,7 +69,7 @@ body {
   .text-input {
     .v-label {
       font-weight: 600;
-      color: rbg(var(--v-theme-secondary));
+      color: rgb(var(--v-theme-secondary));
     }
   }
   .mt-2 {
@@ -80,7 +80,7 @@ body {
   }
   .separate-line {
     margin: 20px 90px 20px 90px;
-    background-color: rgb(var(--v-theme-white));
+    background-color: rgb(var(--v-theme-gray));
     height: 2px;
   }
   p {
