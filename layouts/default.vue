@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar :elevation="10" color="secondary" prominent position="relative">
+    <v-app-bar elevation="10" color="secondary" prominent position="relative">
       <v-btn variant="text" icon="mdi-arrow-up-bold-box-outline"></v-btn>
       <v-toolbar-title>carChat</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -22,11 +22,11 @@
       </div>
     </v-navigation-drawer>
 
-    <v-content>
+    <v-container>
       <v-card>
         <slot />
       </v-card>
-    </v-content>
+    </v-container>
   </v-app>
 </template>
 <script>
@@ -81,7 +81,7 @@ export default {
   flex-direction: column;
   flex: 1 1 auto;
   max-width: 100%;
-  min-height: 10vh;
+  min-height: 0vh;
 
   position: relative;
 }

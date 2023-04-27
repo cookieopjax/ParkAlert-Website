@@ -17,6 +17,7 @@
 $main-color: #f7f5e6;
 body {
   background-color: $main-color;
+  margin-top: 64px;
 }
 #topicImg {
   background-color: white;

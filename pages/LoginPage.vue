@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <!-- <Header /> -->
     <div class="login-form">
       <v-sheet class="mx-auto">
         <v-form @submit.prevent>
@@ -31,8 +31,6 @@
 </template>
 
 <script lang="ts" setup>
-import Header from "~/components/Header.vue";
-
 const userName = ref("");
 const password = ref("");
 
@@ -52,15 +50,8 @@ const passwordRules = ref([
 </script>
 
 <style lang="scss">
-$primary-yellow: #f5b700;
-$primary-blue: #235789;
-$light-blue: #2a86de;
-$white: #ffffff;
-$gray: #c5c2c2;
-$black: #000000;
-
 body {
-  background: $primary-yellow;
+  background: rgb(var(--v-theme-primary));
   margin: 0;
   padding: 0;
 }
@@ -71,25 +62,25 @@ body {
   width: 340px;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
-  background: $white;
+  background: rgb(var(--v-theme-white));
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 40px;
   .text-input {
     .v-label {
       font-weight: 600;
-      color: $primary-blue;
+      color: rbg(var(--v-theme-secondary));
     }
   }
   .mt-2 {
-    color: $white;
+    color: rgb(var(--v-theme-white));
     font-size: 16px;
     font-weight: 600;
-    background: $light-blue;
+    background: rgb(var(--v-theme-secondaryVariant));
   }
   .separate-line {
     margin: 20px 90px 20px 90px;
-    background-color: $gray;
+    background-color: rgb(var(--v-theme-white));
     height: 2px;
   }
   p {
@@ -97,13 +88,13 @@ body {
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    color: $black;
+    color: rgb(var(--v-theme-white));
     a {
-      color: $light-blue;
+      color: rgb(var(--v-theme-secondaryVariant));
       margin-left: 10px;
     }
     a:hover {
-      color: $primary-blue;
+      color: rgb(var(--v-theme-secondary));
     }
   }
 }
