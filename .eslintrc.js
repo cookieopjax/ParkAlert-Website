@@ -10,7 +10,9 @@ module.exports = {
   },
   plugins: ["prettier"],
   rules: {
-    "vue/multi-word-component-names": "off"
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/html-self-closing": "off"
   },
   overrides: [
     {
@@ -22,6 +24,8 @@ module.exports = {
       ],
       rules: {
         "vue/multi-word-component-names": "off",
+        "vue/no-multiple-template-root": "off",
+        "vue/html-self-closing": "off",
         "linebreak-style": ["off", "windows"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
