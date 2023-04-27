@@ -88,7 +88,7 @@ body {
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    color: rgb(var(--v-theme-white));
+    color: rgb(var(--v-theme-black));
     a {
       color: rgb(var(--v-theme-secondaryVariant));
       margin-left: 10px;
