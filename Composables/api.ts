@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // to-do : use .env file to set this
+  // to-do : use .env file to control this
   baseURL: "https://parkalert.onrender.com"
 });
 
