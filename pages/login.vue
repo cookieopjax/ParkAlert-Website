@@ -40,11 +40,6 @@ const account = reactive({
   password: ""
 });
 
-
-
-
-
-
 const emailRules = ref([
   (value: any) => {
     if (value) return true;
@@ -59,7 +54,6 @@ const passwordRules = ref([
   }
 ]);
 
-
 const submit = () => {
   console.log(JSON.stringify(account));
 };
@@ -67,8 +61,8 @@ const submit = () => {
 async function SignIn() {
   try {
     const res = await apiSignin({
-      email: userName.value,
-      password: password.value
+      email: account.email,
+      password: account.password
     });
     // use res.data to do something
     return res;
@@ -77,7 +71,6 @@ async function SignIn() {
     console.log(e);
   }
 }
-
 </script>
 
 <style lang="scss">

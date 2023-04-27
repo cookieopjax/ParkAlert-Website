@@ -6,9 +6,7 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: "custom"
-});
-definePageMeta({
+  layout: "custom",
   middleware: "random-redirect"
 });
 </script>
