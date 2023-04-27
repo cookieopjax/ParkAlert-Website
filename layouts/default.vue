@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar elevation="10" color="secondary" prominent position="relative">
       <v-btn variant="text" icon="mdi-arrow-up-bold-box-outline"></v-btn>
-      <v-toolbar-title>carChat</v-toolbar-title>
+      <v-toolbar-title>parkAlert</v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <v-btn variant="text" icon="mdi-magnify"></v-btn>
       <v-btn variant="text" icon="mdi-dots-vertical"></v-btn> -->
