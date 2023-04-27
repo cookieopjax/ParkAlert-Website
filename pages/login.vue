@@ -3,17 +3,17 @@
     <!-- <Header /> -->
     <div class="login-form">
       <v-sheet class="mx-auto">
-        <v-form @submit.prevent>
+        <v-form @submit.prevent="submit">
           <v-text-field
-            v-model="userName"
+            v-model="account.email"
             clearable
             class="text-input"
-            label="帳號"
-            :rules="usernameRules"
+            label="電子郵件"
+            :rules="emailRules"
             variant="underlined"
           />
           <v-text-field
-            v-model="password"
+            v-model="account.password"
             clearable
             class="text-input"
             label="密碼"
@@ -23,7 +23,7 @@
           />
           <v-btn type="submit" block class="mt-2">登入</v-btn>
           <div class="separate-line"></div>
-          <p>尚未擁有帳號?<a href="#">立即註冊</a></p>
+          <p>尚未擁有帳號?<NuxtLink to="/registration">立即註冊</NuxtLink></p>
           <div class="social-media">
             <v-btn icon="mdi-google" size="small" color="indigo-darken-2"></v-btn>
           </div>
@@ -34,10 +34,12 @@
 </template>
 
 <script lang="ts" setup>
-const userName = ref("");
-const password = ref("");
+const account = reactive({
+  email: "",
+  password: ""
+});
 
-const usernameRules = ref([
+const emailRules = ref([
   (value: any) => {
     if (value) return true;
     return "帳號輸入不可以為空!";
@@ -50,6 +52,10 @@ const passwordRules = ref([
     return "密碼輸入不可以為空!";
   }
 ]);
+
+const submit = () => {
+  console.log(JSON.stringify(account));
+};
 </script>
 
 <style lang="scss">
