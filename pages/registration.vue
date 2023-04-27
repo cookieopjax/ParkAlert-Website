@@ -55,6 +55,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+// definePageMeta({
+//   middleware: "router-auth"
+// });
 const account = reactive({
   email: "",
   password: "",

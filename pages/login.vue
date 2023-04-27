@@ -34,16 +34,16 @@
 </template>
 
 <script lang="ts" setup>
-import { apiSignin } from "../Composables/api";
+import { apiSignin, apiIsAuth } from "../Composables/api";
+
+definePageMeta({
+  middleware: "router-auth"
+});
+
 const account = reactive({
   email: "",
   password: ""
 });
-
-
-
-
-
 
 const emailRules = ref([
   (value: any) => {
@@ -59,25 +59,29 @@ const passwordRules = ref([
   }
 ]);
 
-
-const submit = () => {
+const submit = async () => {
+  await SignIn();
+  const isAuth = await apiIsAuth();
+  if (isAuth) {
+    console.log("isAuth = true");
+    return navigateTo("/firstPage");
+  }
   console.log(JSON.stringify(account));
 };
 
 async function SignIn() {
   try {
     const res = await apiSignin({
-      email: userName.value,
-      password: password.value
+      email: account.email,
+      password: account.password
     });
     // use res.data to do something
-    return res;
+    return true;
   } catch (e) {
     // error handling
     console.log(e);
   }
 }
-
 </script>
 
 <style lang="scss">

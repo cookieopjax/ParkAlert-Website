@@ -18,6 +18,6 @@ interface updatePasswordDto {
 
 export const apiCreateUser = (data: userDto) => instance.post("/users", data);
 export const apiIsAuth = () => instance.get("/users/isAuth");
-export const apiSignin = (data: userDto) => instance.post("../pages/LoginPages.vue", data);
+export const apiSignin = (data: userDto) => instance.post("/users/signin", data);
 export const apiSignout = () => instance.get("/users/signout");
 export const apiUpdatePassword = (data: updatePasswordDto) => instance.put("/users/password", data);

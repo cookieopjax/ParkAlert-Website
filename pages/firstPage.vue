@@ -8,7 +8,4 @@
 definePageMeta({
   layout: "custom"
 });
-definePageMeta({
-  middleware: "random-redirect"
-});
 </script>
