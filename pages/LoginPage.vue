@@ -55,6 +55,11 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.v-application {
+  background-color: rgb(var(--v-theme-primary));
+}
+
 .login-form {
   position: absolute;
   top: 50%;

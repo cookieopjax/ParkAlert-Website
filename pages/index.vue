@@ -17,7 +17,9 @@
 $main-color: #f7f5e6;
 body {
   background-color: $main-color;
-  margin-top: 64px;
+}
+.v-application {
+  background-color: $main-color;
 }
 #topicImg {
   background-color: white;
