@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { apiSignin, apiIsAuth } from "../Composables/api";
+import { apiSignin, apiIsAuth } from "../composables/api";
 
 definePageMeta({
   middleware: "router-auth"
@@ -60,28 +60,30 @@ const passwordRules = ref([
 ]);
 
 const submit = async () => {
-  await SignIn();
-  const isAuth = await apiIsAuth();
-  if (isAuth) {
-    console.log("isAuth = true");
-    return navigateTo("/firstPage");
-  }
-  console.log(JSON.stringify(account));
-};
-
-async function SignIn() {
   try {
-    const res = await apiSignin({
-      email: account.email,
-      password: account.password
-    });
-    // use res.data to do something
-    return true;
-  } catch (e) {
-    // error handling
-    console.log(e);
+    const res = await apiSignin(account);
+    // console.log(res.data); // request傳回來的資料在這
+    navigateTo("/firstPage");
+
+    // 既然res已經正確回傳，應該是不需要再次確認狀態
+    // 在middleware再確認狀態即可
+
+    // const isAuth = await apiIsAuth();
+    // console.log(isAuth);
+    // if (isAuth) {
+    //   console.log("isAuth = true");
+    //   return navigateTo("/firstPage");
+    // }
+  } catch (e: any) {
+    // 非2xx基本都會到這(應該啦)
+    console.error(e);
+
+    // 例如帳密輸錯
+    if (e.response.status === 401) {
+      // 提示使用者帳密錯誤...
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">

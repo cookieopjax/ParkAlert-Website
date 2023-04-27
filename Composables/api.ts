@@ -5,6 +5,11 @@ const instance = axios.create({
   baseURL: "https://parkalert.onrender.com"
 });
 
+instance.interceptors.request.use((config) => {
+  config.withCredentials = true;
+  return config;
+});
+
 interface userDto {
   email: string;
   password: string;
