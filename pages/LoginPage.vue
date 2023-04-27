@@ -34,6 +34,8 @@
 </template>
 
 <script lang="ts" setup>
+import { apiSignin } from "../Composables/api";
+
 const userName = ref("");
 const password = ref("");
 
@@ -50,6 +52,20 @@ const passwordRules = ref([
     return "密碼輸入不可以為空!";
   }
 ]);
+
+async function SignIn() {
+  try {
+    const res = await apiSignin({
+      email: userName.value,
+      password: password.value
+    });
+    // use res.data to do something
+    return res;
+  } catch (e) {
+    // error handling
+    console.log(e);
+  }
+}
 </script>
 
 <style lang="scss">
