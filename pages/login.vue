@@ -34,10 +34,16 @@
 </template>
 
 <script lang="ts" setup>
+import { apiSignin } from "../Composables/api";
 const account = reactive({
   email: "",
   password: ""
 });
+
+
+
+
+
 
 const emailRules = ref([
   (value: any) => {
@@ -53,9 +59,25 @@ const passwordRules = ref([
   }
 ]);
 
+
 const submit = () => {
   console.log(JSON.stringify(account));
 };
+
+async function SignIn() {
+  try {
+    const res = await apiSignin({
+      email: userName.value,
+      password: password.value
+    });
+    // use res.data to do something
+    return res;
+  } catch (e) {
+    // error handling
+    console.log(e);
+  }
+}
+
 </script>
 
 <style lang="scss">
