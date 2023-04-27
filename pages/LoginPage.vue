@@ -24,6 +24,9 @@
           <v-btn type="submit" block class="mt-2">登入</v-btn>
           <div class="separate-line"></div>
           <p>尚未擁有帳號?<a href="#">立即註冊</a></p>
+          <div class="social-media">
+            <v-btn icon="mdi-google" size="small" color="indigo-darken-2"></v-btn>
+          </div>
         </v-form>
       </v-sheet>
     </div>
@@ -101,6 +104,11 @@ body {
     a:hover {
       color: rgb(var(--v-theme-secondary));
     }
+  }
+  .social-media {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0 0;
   }
 }
 </style>
