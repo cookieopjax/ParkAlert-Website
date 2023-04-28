@@ -3,17 +3,17 @@
     <!-- <Header /> -->
     <div class="login-form">
       <v-sheet class="mx-auto">
-        <v-form @submit.prevent>
+        <v-form @submit.prevent="submit">
           <v-text-field
-            v-model="userName"
+            v-model="account.email"
             clearable
             class="text-input"
-            label="帳號"
-            :rules="usernameRules"
+            label="電子郵件"
+            :rules="emailRules"
             variant="underlined"
           />
           <v-text-field
-            v-model="password"
+            v-model="account.password"
             clearable
             class="text-input"
             label="密碼"
@@ -23,7 +23,7 @@
           />
           <v-btn type="submit" block class="mt-2">登入</v-btn>
           <div class="separate-line"></div>
-          <p>尚未擁有帳號?<a href="#">立即註冊</a></p>
+          <p>尚未擁有帳號?<NuxtLink to="/registration">立即註冊</NuxtLink></p>
           <div class="social-media">
             <v-btn icon="mdi-google" size="small" color="indigo-darken-2"></v-btn>
           </div>
@@ -35,11 +35,12 @@
 
 <script lang="ts" setup>
 import { apiSignin } from "../Composables/api";
+const account = reactive({
+  email: "",
+  password: ""
+});
 
-const userName = ref("");
-const password = ref("");
-
-const usernameRules = ref([
+const emailRules = ref([
   (value: any) => {
     if (value) return true;
     return "帳號輸入不可以為空!";
@@ -53,11 +54,15 @@ const passwordRules = ref([
   }
 ]);
 
+const submit = () => {
+  console.log(JSON.stringify(account));
+};
+
 async function SignIn() {
   try {
     const res = await apiSignin({
-      email: userName.value,
-      password: password.value
+      email: account.email,
+      password: account.password
     });
     // use res.data to do something
     return res;
@@ -87,7 +92,7 @@ body {
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   background: rgb(var(--v-theme-white));
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 40px;
   .text-input {
