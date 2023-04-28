@@ -1,25 +1,39 @@
 import { apiIsAuth } from "../composables/api";
+
 async function isAuth() {
   try {
     await apiIsAuth();
-    return true
+    console.log("i am auth");
+      // 如果已經登錄，重定向到目標路由
+    navigateTo("/haha");
+    return true;
   } catch (e) {
-    // error handling
-    console.log(e+"not auth");
-    return false
+    // 如果未登錄，重定向到登錄頁面
+    throw new Error("User is not authenticated");
+    console.log(e + " not auth");
+    navigateTo("/login");
   }
-}
+};
+
 export default async function () {
   const route = useRoute();
-  if (route.path === '/login') {}
+  console.log(route.path+" is route");
+  if (route.path === '/login') {
+    console.log("route is /login");
+    return;
+  }
   else{
-    const a = await isAuth();
-    console.log(a+" true or false from isAuth");
-    if (a) {
-      return navigateTo("/haha");
-    }
-    else{
-      return navigateTo("/login");
+    try {
+      const a = await isAuth();
+      if(a){
+        console.log("i am auth");
+        navigateTo("/haha");
+      }
+      
+    } catch (e) {
+      // 如果未登錄，重定向到登錄頁面
+      console.log(e + " not auth");
+      navigateTo("/login");
     }
     
     
