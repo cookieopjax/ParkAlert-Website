@@ -36,10 +36,6 @@
 <script lang="ts" setup>
 import { apiSignin, apiIsAuth } from "../composables/api";
 
-definePageMeta({
-  middleware: "sign-in"
-});
-
 const account = reactive({
   email: "",
   password: ""
@@ -62,26 +58,16 @@ const passwordRules = ref([
 const submit = async () => {
   try {
     const res = await apiSignin(account);
-    // console.log(res.data); // request傳回來的資料在這
     navigateTo("/firstPage");
-
-    // 既然res已經正確回傳，應該是不需要再次確認狀態
-    // 在middleware再確認狀態即可
-
-    // const isAuth = await apiIsAuth();
-    // console.log(isAuth);
-    // if (isAuth) {
-    //   console.log("isAuth = true");
-    //   return navigateTo("/firstPage");
-    // }
   } catch (e: any) {
     // 非2xx基本都會到這(應該啦)
-    console.error(e);
 
     // 例如帳密輸錯
     if (e.response.status === 401) {
       // 提示使用者帳密錯誤...
     }
+
+    console.error(e);
   }
 };
 </script>

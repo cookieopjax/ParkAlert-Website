@@ -15,25 +15,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { apiIsAuth } from "../composables/api";
-const data = ref();
-
-async function isAuth() {
-  try {
-    const res = await apiIsAuth();
-    // use res.data to do something
-    data.value = res;
-  } catch (e) {
-    // error handling
-    console.log(e);
-  }
-}
-
-onMounted(() => {
-  isAuth();
-});
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss">
 $main-color: #f7f5e6;

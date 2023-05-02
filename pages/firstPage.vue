@@ -6,8 +6,7 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: "custom"
-  // middleware: "router-auth"
-  // middleware: "sign-in"
+  layout: "custom",
+  middleware: "auth"
 });
 </script>
