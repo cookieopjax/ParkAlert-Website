@@ -13,12 +13,23 @@
 <script lang="ts" setup>
 import { ref, onBeforeMount, onMounted } from "vue";
 import QRCode from "qrcode-generator";
+import jsPDF from "jspdf";
 
 const qrcode = ref<HTMLDivElement | null>(null);
 const qrcodeId = ref("");
 
 const exportAsPDF = () => {
   console.log("exportAsPDF pressed!");
+  const qr = generateQRCode(qrcodeId.value);
+  const canvas = document.createElement("canvas");
+  drawQRCodeCanvas(canvas, qr);
+
+  // eslint-disable-next-line new-cap
+  const pdfFile = new jsPDF();
+  const imageData = canvas.toDataURL("image/png");
+  pdfFile.addImage(imageData, "PNG", 10, 10, 116, 116);
+
+  pdfFile.save("qrcode.pdf");
 };
 
 const exportAsPNG = () => {
