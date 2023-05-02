@@ -24,6 +24,7 @@ const exportAsPDF = () => {
 const exportAsPNG = () => {
   console.log("exportAsPNG pressed!");
   const qr = generateQRCode(qrcodeId.value);
+  // 建立 canvas element 並呼叫 drawQRCodeCanvas 在上面畫圖
   const canvas = document.createElement("canvas");
   drawQRCodeCanvas(canvas, qr);
 
@@ -39,12 +40,15 @@ const drawQRCodeCanvas = (canvas: HTMLCanvasElement, qr: any) => {
   const cellSize = 10;
   const padding = 20;
 
+  // 畫布的寬高為原本 QRCode 的寬高再加上 padding 20
   canvas.width = size * cellSize + padding * 2;
   canvas.height = size * cellSize + padding * 2;
 
   if (context) {
-    context.fillStyle = "white";
+    // 先將畫布全部上白色
+    context.fillStyle = "#fff";
     context.fillRect(0, 0, canvas.width + padding * 2, canvas.height + padding * 2);
+    // 再將 QRCode 畫上去
     for (let row = 0; row < size; row++) {
       for (let column = 0; column < size; column++) {
         if (qr.isDark(row, column)) {
@@ -52,6 +56,7 @@ const drawQRCodeCanvas = (canvas: HTMLCanvasElement, qr: any) => {
         } else {
           context.fillStyle = "#fff";
         }
+        // 因為有白邊，因此 (row, column) 都要再加上 padding
         context.fillRect(column * cellSize + padding, row * cellSize + padding, cellSize, cellSize);
       }
     }
@@ -66,14 +71,16 @@ const generateQRCode = (text: string) => {
 };
 
 onBeforeMount(() => {
+  // 設定 QRCode 的資料
   qrcodeId.value = "parkAlert";
   console.log("onBeforeMount - QRCode ID = " + qrcodeId.value);
 });
 
 onMounted(() => {
+  // 產生 QRCode 並顯示到網頁上
   const qr = generateQRCode(qrcodeId.value);
   if (qrcode.value) {
-    qrcode.value.innerHTML = qr.createSvgTag({ cellSize: 10 });
+    qrcode.value.innerHTML = qr.createSvgTag({ cellSize: 10, margin: 10 });
   }
 });
 </script>
