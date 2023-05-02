@@ -20,6 +20,7 @@ export default defineNuxtPlugin(nuxtApp => {
             black: "#000000",
             gray: "#c2c5c5",
             white: "#ffffff",
+            warning: "#D72828",
           }
         }
       }
