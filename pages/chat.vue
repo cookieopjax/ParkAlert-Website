@@ -8,7 +8,7 @@
 import io from "socket.io-client";
 const inputValue = ref("");
 const msg = reactive([]);
-let socket = null;
+const socket = null;
 
 // 送出訊息
 function sendData() {
@@ -16,9 +16,7 @@ function sendData() {
 }
 
 onMounted(() => {
-  socket = io("https://parkalert.onrender.com");
-
-  // 成功連接上聊天室
+  // 連接上聊天室
   socket.on("connect", () => {
     console.log("Connected to Socket.io server");
   });
