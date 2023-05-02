@@ -21,6 +21,7 @@ const qrcodeId = ref("");
 const exportAsPDF = () => {
   console.log("exportAsPDF pressed!");
   const qr = generateQRCode(qrcodeId.value);
+  // 建立 canvas element 並呼叫 drawQRCodeCanvas 在上面畫圖
   const canvas = document.createElement("canvas");
   drawQRCodeCanvas(canvas, qr);
 
@@ -56,7 +57,7 @@ const drawQRCodeCanvas = (canvas: HTMLCanvasElement, qr: any) => {
   canvas.height = size * cellSize + padding * 2;
 
   if (context) {
-    // 先將畫布全部上白色
+    // 先將畫布全部畫上白色
     context.fillStyle = "#fff";
     context.fillRect(0, 0, canvas.width + padding * 2, canvas.height + padding * 2);
     // 再將 QRCode 畫上去
@@ -67,7 +68,7 @@ const drawQRCodeCanvas = (canvas: HTMLCanvasElement, qr: any) => {
         } else {
           context.fillStyle = "#fff";
         }
-        // 因為有白邊，因此 (row, column) 都要再加上 padding
+        // 因為有白邊，因此 (column * cellSize, row * cellSize) 都要再加上 padding
         context.fillRect(column * cellSize + padding, row * cellSize + padding, cellSize, cellSize);
       }
     }
