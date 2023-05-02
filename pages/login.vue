@@ -37,7 +37,7 @@
 import { apiSignin, apiIsAuth } from "../composables/api";
 
 definePageMeta({
-  middleware: "router-auth"
+  middleware: "sign-in"
 });
 
 const account = reactive({

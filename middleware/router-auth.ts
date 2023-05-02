@@ -15,29 +15,37 @@ async function isAuth() {
   }
 };
 
-export default async function () {
+
+export default  defineNuxtRouteMiddleware((to, from) => {
+  // setting the redirect code to '301 Moved Permanently'
   const route = useRoute();
   console.log(route.path+" is route");
-  if (route.path === '/login') {
-    console.log("route is /login");
-    return;
-  }
-  else{
-    try {
-      const a = await isAuth();
-      if(a){
-        console.log("i am auth");
-        navigateTo("/haha");
-      }
+  return navigateTo('/haha', { redirectCode: 301 });
+});
+
+// export default async function (to,from) {
+//   const route = useRoute();
+//   console.log(route.path+" is route");
+//   if (route.path === '/login') {
+//     console.log("route is /login");
+//     return;
+//   }
+//   else{
+//     try {
+//       const a = await isAuth();
+//       if(a){
+//         console.log("i am auth");
+//         return true
+//       }
       
-    } catch (e) {
-      // 如果未登錄，重定向到登錄頁面
-      console.log(e + " not auth");
-      navigateTo("/login");
-    }
+//     } catch (e) {
+//       // 如果未登錄，重定向到登錄頁面
+//       console.log(e + " not auth");
+//       return false
+//     }
     
     
-  }
+//   }
 
   
-};
+// };
