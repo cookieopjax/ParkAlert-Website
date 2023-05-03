@@ -23,13 +23,14 @@
 <script setup>
 import io from "socket.io-client";
 const inputValue = ref("");
-const msg = reactive([]);
+const msg = ref([]);
 const router = useRouter();
 let socket = null;
 
 // 送出訊息
 function sendData() {
   socket.emit("newMessage", inputValue.value);
+  inputValue.value = "";
 }
 
 // 返回 match 頁面
@@ -60,8 +61,7 @@ onMounted(() => {
 
   // 接收訊息
   socket.on("onMessage", (res) => {
-    console.log(res);
-    msg.push(res);
+    msg.value = res;
   });
 });
 </script>
