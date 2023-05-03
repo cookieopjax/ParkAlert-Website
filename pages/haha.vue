@@ -3,7 +3,7 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: "custom",
-  middleware: "sign-in"
+  // layout: "custom",
+  middleware: "auth"
 });
 </script>
