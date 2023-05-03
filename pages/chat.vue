@@ -8,11 +8,7 @@
 import io from "socket.io-client";
 const inputValue = ref("");
 const msg = reactive([]);
-<<<<<<< HEAD
 let socket = null;
-=======
-const socket = null;
->>>>>>> origin/issue#20
 
 // 送出訊息
 function sendData() {

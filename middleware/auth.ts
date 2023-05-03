@@ -7,10 +7,9 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;// 如果 token 存在，就在 Authorization Header 中攜帶
-    console.log("Authorization");
+    config.headers.Authorization = `Bearer ${token}`; // 如果 token 存在，就在 Authorization Header 中攜帶
   }
   return config;
 });
@@ -27,7 +26,6 @@ async function isAuth() {
     return false;
   }
 }
-
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   if (!(await isAuth())) return navigateTo("/login");
