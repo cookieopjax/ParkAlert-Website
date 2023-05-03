@@ -16,10 +16,19 @@ function sendData() {
 }
 
 onMounted(() => {
-  socket = io("https://parkalert.onrender.com");
+  socket = io("https://parkalert.onrender.com", {
+    extraHeaders: {
+      Authorization: "Bearer " + localStorage.getItem("token")
+    }
+  });
   // 連接上聊天室
   socket.on("connect", () => {
     console.log("Connected to Socket.io server");
+  });
+
+  socket.on("disconnect", () => {
+    console.log("已斷連");
+    navigateTo("/login");
   });
 
   // 連結失敗
