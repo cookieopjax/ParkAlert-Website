@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     typeCheck: true
   },
   build: {
-    transpile: ["vuetify"]
+    transpile: ["vuetify","gsap"],
   },
   
   modules: [
