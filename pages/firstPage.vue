@@ -7,6 +7,6 @@
 <script setup>
 definePageMeta({
   layout: "custom",
-  middleware: "random-redirect"
+  middleware: "auth"
 });
 </script>

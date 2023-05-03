@@ -7,34 +7,15 @@
           <v-sheet class="ma-2 pa-2"> One of three columns21332 </v-sheet>
           <NuxtLink to="/firstPage">前往 firstPage</NuxtLink> <br />
           <NuxtLink to="/login">前往 login</NuxtLink><br />
-          <NuxtLink to="/registration">前往 registration</NuxtLink>
+          <NuxtLink to="/registration">前往 registration</NuxtLink><br />
+          <NuxtLink to="/haha">前往 haha</NuxtLink>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { apiIsAuth } from "../composables/api";
-const data = ref();
-// definePageMeta({
-//   middleware: "router-auth"
-// });
-async function isAuth() {
-  try {
-    const res = await apiIsAuth();
-    // use res.data to do something
-    data.value = res;
-  } catch (e) {
-    // error handling
-    console.log(e);
-  }
-}
-
-onMounted(() => {
-  isAuth();
-});
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss">
 $main-color: #f7f5e6;

@@ -1,12 +1,44 @@
 import axios from "axios";
 
+
+// export default {
+//   axios: {
+//     baseURL: 'https://parkalert.onrender.com',
+//     credentials: true,
+//     withCredentials:false,
+//     interceptors: {
+//       request: (config :any) => {
+//         console.log("interceptors request");
+//         const token = localStorage.getItem("token");
+//           if (token) {
+//             config.headers.Authorization = `Bearer ${token}`; // 如果 token 存在，就在 Authorization Header 中攜帶
+//             console.log("Authorization");
+//           }
+//         config.withCredentials = true;
+//         return config;
+//       },
+//       response: (response :any) => {
+//         console.log('interceptors response')
+//         return response
+//       }
+//     }
+//   }
+// }
+
 const instance = axios.create({
   // to-do : use .env file to control this
   baseURL: "https://parkalert.onrender.com"
 });
 
 instance.interceptors.request.use((config) => {
-  config.withCredentials = true;
+  // console.log("interceptors request");
+      const token = localStorage.getItem("token");
+      // console.log(token);
+      if (token) {
+        config.headers.Authorization = "Bearer " +token; // 如果 token 存在，就在 Authorization Header 中攜帶
+        // console.log("Authorization");
+      }
+  config.withCredentials = false;
   return config;
 });
 

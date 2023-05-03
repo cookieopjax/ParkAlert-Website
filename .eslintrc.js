@@ -12,7 +12,8 @@ module.exports = {
   rules: {
     "vue/multi-word-component-names": "off",
     "vue/no-multiple-template-root": "off",
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   },
   overrides: [
     {
@@ -29,6 +30,7 @@ module.exports = {
         "linebreak-style": ["off", "windows"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
+        "no-unused-vars": "warn",
         "@typescript-eslint/no-unused-vars": "warn"
       }
     }
