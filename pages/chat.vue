@@ -1,20 +1,21 @@
 <template>
-  <!-- <div>Chat now</div>
-  <p v-for="(item, index) in msg" :key="index">{{ item }}</p>
-  <input v-model="inputValue" type="text" />
-  <button @click="sendData">send chat</button> -->
   <div>
     <v-card class="chat-wrapper">
       <v-banner class="chat-header text-h6 font-weight-regular" sticky>
         <v-icon size="22" icon="mdi-keyboard-backspace" @click="goBackToMatch"></v-icon>
-        {{ $route.query.email }}
+        {{ title }}
       </v-banner>
 
       <v-card-text>
-        <div v-for="(item, index) in msg" :key="index">{{ item }}</div>
+        <div v-for="(item, index) in msg" :key="index" class="d-flex mb-4">
+          <div v-if="item.name === userEmail" class="msg-bubble ml-auto py-3 px-4 rounded-xl">
+            {{ item.msg }}
+          </div>
+          <div v-else class="msg-bubble py-3 px-4 rounded-xl">{{ item.msg }}</div>
+        </div>
       </v-card-text>
       <div class="input-group">
-        <input v-model="inputValue" type="text" placeholder="輸入訊息" />
+        <input v-model="inputValue" type="text" placeholder="輸入訊息" @keypress.enter="sendData" />
         <span @click="sendData">發送</span>
       </div>
     </v-card>
@@ -22,9 +23,16 @@
 </template>
 <script setup>
 import io from "socket.io-client";
+definePageMeta({
+  middleware: "chat"
+});
 const inputValue = ref("");
 const msg = ref([]);
-const router = useRouter();
+const route = useRouter();
+const emailData = useState("chatEmail");
+const title = ref("");
+const userEmail = ref(""); // 當前用戶的email
+
 let socket = null;
 
 // 送出訊息
@@ -35,13 +43,17 @@ function sendData() {
 
 // 返回 match 頁面
 function goBackToMatch() {
-  router.go(-1);
+  route.go(-1);
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await getUserEmail();
+  console.log(userEmail.value);
+  title.value = emailData.value;
   socket = io("https://parkalert.onrender.com", {
     extraHeaders: {
-      Authorization: "Bearer " + localStorage.getItem("token")
+      Authorization: "Bearer " + localStorage.getItem("token"),
+      chatWith: title.value
     }
   });
   // 連接上聊天室
@@ -50,7 +62,6 @@ onMounted(() => {
   });
 
   socket.on("disconnect", () => {
-    console.log("已斷連");
     navigateTo("/login");
   });
 
@@ -61,15 +72,23 @@ onMounted(() => {
 
   // 接收訊息
   socket.on("onMessage", (res) => {
-    msg.value = res;
+    msg.value.push(res);
   });
 });
+
+async function getUserEmail() {
+  try {
+    const res = await apiIsAuth();
+    userEmail.value = res.data.email;
+  } catch (e) {
+    console.log(e);
+  }
+}
 </script>
 <style lang="scss">
-// input,
-// button {
-//   border: 1px solid black;
-// }
+.card-container {
+  max-width: 800px;
+}
 
 body {
   background-color: rgb(var(--v-theme-primary));
@@ -82,6 +101,7 @@ body {
 }
 
 .chat-wrapper {
+  max-width: 500px;
   position: absolute;
   top: 54%;
   left: 50%;
@@ -139,5 +159,11 @@ body {
       }
     }
   }
+}
+
+.msg-bubble {
+  background-color: rgb(var(--v-theme-secondary));
+  font-size: 1.25rem;
+  color: white;
 }
 </style>
