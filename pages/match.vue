@@ -3,6 +3,7 @@
     <div class="wrapper">
       <div class="p-container" style="display: flex; justify-content: center; margin: 5px 0">
         <p style="font-size: 16px; font-weight: 600">輸入信箱</p>
+        <p>{{ emailData }}</p>
       </div>
       <v-sheet class="mx-auto">
         <v-form @submit.prevent="btnClicked">
@@ -23,7 +24,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-
+const emailData: any = useState("chatEmail", () => "");
 const email = ref("");
 const router = useRouter();
 
@@ -37,13 +38,10 @@ const rule = ref([
 ]);
 
 const btnClicked = () => {
-  const data = {
-    email: email.value
-  };
+  emailData.value = email.value;
   if (email.value !== "") {
     router.push({
-      path: "/chat",
-      query: data
+      path: "/chat"
     });
   }
 };
