@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar elevation="10" color="secondary" prominent position="relative">
-      <v-btn variant="text" icon="mdi-arrow-up-bold-box-outline"></v-btn>
+      <img src="../assets/icon.png" alt="" class="h-50 ml-3" />
       <v-toolbar-title>parkAlert</v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <v-btn variant="text" icon="mdi-magnify"></v-btn>

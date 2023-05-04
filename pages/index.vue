@@ -8,6 +8,7 @@
           <NuxtLink to="/firstPage">前往 firstPage</NuxtLink> <br />
           <NuxtLink to="/login">前往 login</NuxtLink><br />
           <NuxtLink to="/registration">前往 registration</NuxtLink><br />
+          <NuxtLink to="/match">前往配對聊天</NuxtLink><br />
           <NuxtLink to="/haha">前往 haha</NuxtLink>
         </v-col>
       </v-row>
