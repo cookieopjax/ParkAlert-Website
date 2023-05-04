@@ -1,5 +1,3 @@
-import { apiIsAuth } from "@/composables/api";
-
 async function isAuth() {
   try {
     await apiIsAuth();
