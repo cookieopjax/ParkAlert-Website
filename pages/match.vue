@@ -3,7 +3,6 @@
     <div class="wrapper">
       <div class="p-container" style="display: flex; justify-content: center; margin: 5px 0">
         <p style="font-size: 16px; font-weight: 600">輸入信箱</p>
-        <p>{{ emailData }}</p>
       </div>
       <v-sheet class="mx-auto">
         <v-form @submit.prevent="btnClicked">
