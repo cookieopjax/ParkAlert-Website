@@ -1,6 +1,7 @@
 async function isAuth() {
   try {
-    const res = await apiIsAuth();
+    const api = useApi();
+    const res = await api.isAuth();
     const email = useState("email", () => res.data.email);
     return true;
   } catch (e: any) {

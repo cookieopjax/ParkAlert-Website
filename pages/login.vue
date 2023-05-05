@@ -55,7 +55,8 @@ const passwordRules = ref([
 
 const submit = async () => {
   try {
-    const res = await apiSignin(account);
+    const api = useApi();
+    const res = await api.signin(account);
     const signInResponse = { token: res.data }; // 取得signin字串
     const tokenString = signInResponse.token;
     // console.log(tokenString);

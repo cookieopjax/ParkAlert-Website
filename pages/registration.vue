@@ -136,7 +136,8 @@ const submit = () => {
 
 async function createUser() {
   try {
-    const res = await apiCreateUser({
+    const api = useApi();
+    const res = await api.createUser({
       email: account.email,
       password: account.password
     });
