@@ -89,15 +89,16 @@ const generateQRCode = (text: string) => {
 onBeforeMount(() => {
   // 設定 QRCode 的資料
   const email: any = useState("email");
-  qrcodeId.value = email.value;
+  qrcodeId.value = "https://park-alert-website.vercel.app/chat?email=" + email.value;
   console.log("onBeforeMount - QRCode ID = " + qrcodeId.value);
 });
 
 onMounted(() => {
   // 產生 QRCode 並顯示到網頁上
+
   const qr = generateQRCode(qrcodeId.value);
   if (qrcode.value) {
-    qrcode.value.innerHTML = qr.createSvgTag({ cellSize: 10, margin: 10 });
+    qrcode.value.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 10 });
   }
 });
 </script>

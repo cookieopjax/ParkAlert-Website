@@ -48,7 +48,6 @@ function goBackToMatch() {
 
 onMounted(async () => {
   await getUserEmail();
-  console.log(userEmail.value);
   title.value = emailData.value;
   socket = io("https://parkalert.onrender.com", {
     extraHeaders: {
