@@ -77,7 +77,8 @@ onMounted(async () => {
 
 async function getUserEmail() {
   try {
-    const res = await apiIsAuth();
+    const api = useApi();
+    const res = await api.isAuth();
     userEmail.value = res.data.email;
   } catch (e) {
     console.log(e);
