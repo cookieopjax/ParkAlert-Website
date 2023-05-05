@@ -61,7 +61,7 @@ const submit = async () => {
     // console.log(tokenString);
     localStorage.setItem("token", tokenString); // 將 token 字串儲存到本地存儲
 
-    navigateTo("/firstPage");
+    navigateTo("/");
   } catch (e: any) {
     // 非2xx基本都會到這(應該啦)
 
@@ -77,14 +77,13 @@ const submit = async () => {
 
 <style lang="scss">
 body {
-  background: rgb(var(--v-theme-primary));
   margin: 0;
   padding: 0;
 }
 
-.v-application {
-  background-color: rgb(var(--v-theme-primary));
-}
+// .v-application {
+//   background-color: rgb(var(--v-theme-primary));
+// }
 
 .login-form {
   position: absolute;

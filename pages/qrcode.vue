@@ -15,6 +15,10 @@ import { ref, onBeforeMount, onMounted } from "vue";
 import QRCode from "qrcode-generator";
 import jsPDF from "jspdf";
 
+definePageMeta({
+  middleware: "auth"
+});
+
 const qrcode = ref<HTMLDivElement | null>(null);
 const qrcodeId = ref("");
 
@@ -84,7 +88,8 @@ const generateQRCode = (text: string) => {
 
 onBeforeMount(() => {
   // 設定 QRCode 的資料
-  qrcodeId.value = "parkAlert";
+  const email: any = useState("email");
+  qrcodeId.value = email.value;
   console.log("onBeforeMount - QRCode ID = " + qrcodeId.value);
 });
 
