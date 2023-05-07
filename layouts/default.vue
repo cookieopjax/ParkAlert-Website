@@ -25,8 +25,8 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="bg-bg">
-      <v-container>
+    <v-main class="bg-bg" style="padding-top: 64px">
+      <v-container id="root-container">
         <slot />
       </v-container>
     </v-main>
@@ -43,6 +43,10 @@ function singout() {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap");
+
+.v-toolbar {
+  position: fixed;
+}
 
 * {
   font-family: "Noto Sans TC", sans-serif;
