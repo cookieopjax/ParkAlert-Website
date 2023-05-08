@@ -24,7 +24,7 @@
           <v-btn type="submit" block class="mt-2">登入</v-btn>
           <div class="separate-line"></div>
           <p>尚未擁有帳號?<NuxtLink to="/registration">立即註冊</NuxtLink></p>
-          <div class="social-media">
+          <div class="social-media" @click="handleGoogle">
             <v-btn icon="mdi-google" size="small" color="indigo-darken-2"></v-btn>
           </div>
         </v-form>
@@ -34,6 +34,11 @@
 </template>
 
 <script lang="ts" setup>
+import { googleTokenLogin } from "vue3-google-login";
+const api = useApi();
+const runtimeConfig = useRuntimeConfig();
+const { googleClientId: GOOGLE_CLIENT_ID } = runtimeConfig.public;
+
 const account = reactive({
   email: "",
   password: ""
@@ -55,7 +60,6 @@ const passwordRules = ref([
 
 const submit = async () => {
   try {
-    const api = useApi();
     const res = await api.signin(account);
     const signInResponse = { token: res.data }; // 取得signin字串
     const tokenString = signInResponse.token;
@@ -74,6 +78,21 @@ const submit = async () => {
     console.error(e);
   }
 };
+
+const handleGoogle = async () => {
+  try {
+    const res = await googleTokenLogin({
+      clientId: GOOGLE_CLIENT_ID
+    });
+    const res2 = await api.google_signin({ oAuthToken: res.access_token });
+
+    localStorage.setItem("token", res2.data); // 將 token 字串儲存到本地存儲
+
+    navigateTo("/");
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 
 <style lang="scss">
@@ -81,10 +100,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-// .v-application {
-//   background-color: rgb(var(--v-theme-primary));
-// }
 
 .login-form {
   position: absolute;
