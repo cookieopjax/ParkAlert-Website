@@ -4,7 +4,9 @@ interface userDto {
   email: string;
   password: string;
 }
-
+interface oAuthDto {
+  oAuthToken: string;
+}
 export const useApi = () => {
   const config = useRuntimeConfig();
 
@@ -24,6 +26,7 @@ export const useApi = () => {
   return {
     createUser: (data: userDto) => instance.post("/users", data),
     isAuth: () => instance.get("/users/isAuth"),
-    signin: (data: userDto) => instance.post("/users/signin", data)
+    signin: (data: userDto) => instance.post("/users/signin", data),
+    google_signin: (data: oAuthDto) => instance.post("/users/google_signin", data)
   };
 };
