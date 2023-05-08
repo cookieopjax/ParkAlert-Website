@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-
+const emailData: any = useState("chatEmail", () => "");
 const email = ref("");
 const router = useRouter();
 
@@ -37,13 +37,11 @@ const rule = ref([
 ]);
 
 const btnClicked = () => {
-  const data = {
-    email: email.value
-  };
+  emailData.value = email.value;
   if (email.value !== "") {
     router.push({
       path: "/chat",
-      query: data
+      query: { email: email.value }
     });
   }
 };

@@ -34,9 +34,6 @@
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
-import { apiSignin, apiIsAuth } from "../composables/api";
-
 const account = reactive({
   email: "",
   password: ""
@@ -58,33 +55,14 @@ const passwordRules = ref([
 
 const submit = async () => {
   try {
-    const res = await apiSignin(account);
+    const api = useApi();
+    const res = await api.signin(account);
     const signInResponse = { token: res.data }; // 取得signin字串
     const tokenString = signInResponse.token;
     // console.log(tokenString);
     localStorage.setItem("token", tokenString); // 將 token 字串儲存到本地存儲
-    // const instance = axios.create({
-    //   baseURL: "https://jsonplaceholder.typicode.com"
-    // });
-    // instance.interceptors.request.use((config) => {
-    //   const token = localStorage.getItem("token");
-    //   console.log("interceptors request2");
-    //   console.log(token);
-    //   if (token) {
-    //     console.log("Authorization2");
-    //     config.headers.Authorization = "Bearer " + token;
-    //   }
-    //   return config;
-    // });
-    // instance
-    //   .get("/users")
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    navigateTo("/firstPage");
+
+    navigateTo("/");
   } catch (e: any) {
     // 非2xx基本都會到這(應該啦)
 
@@ -96,19 +74,17 @@ const submit = async () => {
     console.error(e);
   }
 };
-
 </script>
 
 <style lang="scss">
 body {
-  background: rgb(var(--v-theme-primary));
   margin: 0;
   padding: 0;
 }
 
-.v-application {
-  background-color: rgb(var(--v-theme-primary));
-}
+// .v-application {
+//   background-color: rgb(var(--v-theme-primary));
+// }
 
 .login-form {
   position: absolute;
